@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-weather
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-weather
+  template:
+    metadata:
+      labels:
+        app: api-weather
+    spec:
+      imagePullSecrets:
+      - name: myregistrykey
+      containers:
+      - name: api-weather
+        image: agrrisk-api-weather
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 7102
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-weather
+spec:
+  type: NodePort  # Cambiado a NodePort para Minikube
+  ports:
+  - port: 7102
+    targetPort: 7102
+    nodePort: 30051  # Especifica un puerto entre 30000-32767
+  selector:
+    app: api-weather
+
+# kubectl apply -f api-weather-deployment.yaml

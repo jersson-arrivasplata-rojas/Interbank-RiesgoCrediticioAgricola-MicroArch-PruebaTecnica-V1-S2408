@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-config
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: server-config
+  template:
+    metadata:
+      labels:
+        app: server-config
+    spec:
+      imagePullSecrets:
+      - name: myregistrykey
+      containers:
+      - name: server-config
+        image: agrrisk-server-config
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 7000
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1024Mi"
+            cpu: "1000m"
+        env:
+        - name: TENANT_ID
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: TENANT_ID
+        - name: APPLICATION_CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: APPLICATION_CLIENT_ID
+        - name: APPLICATION_CLIENT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: APPLICATION_CLIENT_SECRET
+        - name: GITHUB_URI
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: GITHUB_URI
+        - name: GITHUB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: GITHUB_USERNAME
+        - name: GITHUB_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: GITHUB_PASSWORD
+        - name: KEYVAULT_URI
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: KEYVAULT_URI
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-config
+spec:
+  type: NodePort  # Cambiado a NodePort para Minikube
+  ports:
+  - port: 7000
+    targetPort: 7000
+    nodePort: 30007  # Especifica un puerto entre 30000-32767
+  selector:
+    app: server-config
+
+# kubectl apply -f server-config-deployment.yaml

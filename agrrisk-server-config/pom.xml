@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.2</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.jersson.arrivasplata.agrrisk.serverconfig</groupId>
+	<artifactId>agrrisk-server-config</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>server-config</name>
+	<description>Servidor de Configuración - Sistema de Monitoreo de Riesgo
+		Crediticio para Servicios Agrícolas</description>
+
+	<!-- Información del Desarrollador -->
+	<developers>
+		<developer>
+			<id>jersson</id>
+			<name>Jersson Giomar Arrivasplata Rojas</name>
+			<email>developer@jerssonarrivasplata.com</email>
+		</developer>
+	</developers>
+
+	<!-- Propiedades del Proyecto -->
+	<properties>
+		<java.version>17</java.version>
+		<spring-cloud.version>2023.0.3</spring-cloud.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+	<!-- Gestión de Dependencias -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<!-- Dependencias del Proyecto -->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-context</artifactId>
+		</dependency>
+
+		<!-- Spring Cloud Config Server: Provee un servidor de configuración
+		centralizado para la gestión de configuraciones -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
+		</dependency>
+
+		<!-- Spring Cloud Azure Key Vault: Integración con Azure Key Vault para
+		la gestión de secretos -->
+		<dependency>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
+			<version>5.15.0</version>
+		</dependency>
+
+		<!-- Spring Cloud Netflix Eureka Client: Registro y descubrimiento de
+		servicios utilizando Eureka -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		
+		<!-- Spring Boot DevTools: Herramientas de desarrollo para mejorar la
+		productividad -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Spring Boot Starter Test: Dependencias y configuraciones para
+		pruebas unitarias y de integración -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<!-- Configuración del Build -->
+	<build>
+		<plugins>
+			<!-- Plugin de Spring Boot para gestionar la construcción de la
+			aplicación -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Plugin para gestionar la codificación de recursos -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

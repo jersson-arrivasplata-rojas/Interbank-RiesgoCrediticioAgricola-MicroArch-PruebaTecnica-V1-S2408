@@ -10,6 +10,6 @@ WORKDIR /app
 COPY target/agrrisk-server-discovery-0.0.1-SNAPSHOT.jar /app/api-discovery.jar
 
 # Comando para ejecutar el JAR
-ENTRYPOINT ["java", "-jar", "/app/api-discovery.jar", "--spring.config.import=optional:configserver:http://server-config:7000"]
+ENTRYPOINT ["java", "-jar", "/app/api-discovery.jar", "--spring.config.import=optional:configserver:http://server-config:7000", "--eureka.instance.hostname=server-discovery"]
 
 # docker build -t agrrisk-server-discovery .

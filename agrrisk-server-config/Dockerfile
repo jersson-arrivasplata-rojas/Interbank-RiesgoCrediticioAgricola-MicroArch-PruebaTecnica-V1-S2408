@@ -10,7 +10,7 @@ WORKDIR /app
 COPY target/agrrisk-server-config-0.0.1-SNAPSHOT.jar /app/server-config.jar
 
 # Comando para ejecutar el JAR
-ENTRYPOINT ["java", "-jar", "/app/server-config.jar"]
+ENTRYPOINT ["java", "-jar", "/app/server-config.jar", "--eureka.instance.hostname=server-discovery"]
 
 # & minikube docker-env | Invoke-Expression
 

@@ -10,7 +10,7 @@ WORKDIR /app
 COPY target/agrrisk-api-weather-0.0.1-SNAPSHOT.jar /app/api-weather.jar
 
 # Comando para ejecutar el JAR
-ENTRYPOINT ["java", "-jar", "/app/api-weather.jar", "--spring.config.import=optional:configserver:http://server-config:7000"]
+ENTRYPOINT ["java", "-jar", "/app/api-weather.jar", "--spring.config.import=optional:configserver:http://server-config:7000", "--eureka.instance.hostname=server-discovery"]
 
 # & minikube -p minikube docker-env | Invoke-Expression
 

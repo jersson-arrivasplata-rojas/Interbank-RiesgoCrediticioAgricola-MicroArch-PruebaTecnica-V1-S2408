@@ -79,6 +79,7 @@
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Herramientas y Utilidades -->
@@ -99,6 +100,18 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- Herramientas de Log -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.4.14</version> <!-- Asegúrate de usar una versión
+			compatible -->
+		</dependency>
+		<dependency>
+			<groupId>com.github.loki4j</groupId>
+			<artifactId>loki-logback-appender</artifactId>
+			<version>1.5.2</version>
+		</dependency>
 		<!-- Dependencias de Resiliencia y Retrys -->
 		<dependency>
 			<groupId>io.github.resilience4j</groupId>
